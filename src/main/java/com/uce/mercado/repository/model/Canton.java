@@ -35,7 +35,6 @@ public class Canton extends RepresentationModel<Canton>implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cant_id")
 	private Integer id;
-	
 
 	@Column(name = "cant_codigo")
 	private String codigo;
@@ -43,8 +42,8 @@ public class Canton extends RepresentationModel<Canton>implements Serializable{
 	private String nombre;
 	@ManyToOne( fetch = FetchType.LAZY,cascade = CascadeType.ALL )
 	@JoinColumn(name="prov_id")
-	
 	private Provincia provincia;
+
 	public Integer getId() {
 		return id;
 	}

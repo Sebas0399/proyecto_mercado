@@ -24,7 +24,6 @@ public class Provincia extends RepresentationModel<Provincia>implements Serializ
 	private static final long serialVersionUID = 1L;
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
 	@Column(name = "prov_id")
 	private Integer id;
 	@Column(name = "prov_nombre")
