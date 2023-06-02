@@ -1,6 +1,9 @@
 package com.uce.mercado.repository.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "productor")
@@ -24,6 +27,10 @@ public class Productor {
 //    @ManyToOne( fetch = FetchType.LAZY,cascade = CascadeType.ALL )
 //    @JoinColumn(name="parroquia_id")
 //    private Parroquia parroquia;
+
+//    @OneToMany(mappedBy = "productor" ,fetch = FetchType.LAZY)
+//    @JsonBackReference
+//    private List<ProductoProductor> productosProductor;
 
     public Integer getId() {
         return id;
@@ -56,7 +63,16 @@ public class Productor {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+//    public List<ProductoProductor> getProductosProductor() {
+//        return productosProductor;
+//    }
 //
+//    public void setProductosProductor(List<ProductoProductor> productosProductor) {
+//        this.productosProductor = productosProductor;
+//    }
+
+
 //    public Parroquia getParroquia() {
 //        return parroquia;
 //    }
