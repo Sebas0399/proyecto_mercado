@@ -25,9 +25,9 @@ public class Provincia extends RepresentationModel<Provincia>implements Serializ
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-	@Column(name = "prov_id")
+	@Column(name = "provincia_id")
 	private Integer id;
-	@Column(name = "prov_nombre")
+	@Column(name = "provincia_nombre")
 	private String nombre;
 	@OneToMany(mappedBy = "provincia" ,fetch = FetchType.LAZY)
 	@JsonBackReference

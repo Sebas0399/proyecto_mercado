@@ -1,7 +1,8 @@
-package com.uce.mercado.repository;
+package com.uce.mercado.repository.impl;
 
 import java.util.Optional;
 
+import com.uce.mercado.repository.inter.IProvinciaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.uce.mercado.repository.model.Provincia;
@@ -11,7 +12,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 @Repository
 @Transactional
-public class ProvinciaRepositoryImpl implements IProvinciaRepository{
+public class ProvinciaRepositoryImpl implements IProvinciaRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
 	@Override

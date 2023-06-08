@@ -1,8 +1,9 @@
-package com.uce.mercado.repository;
+package com.uce.mercado.repository.impl;
 
 import java.util.List;
 import java.util.Optional;
 
+import com.uce.mercado.repository.inter.ICantonRepository;
 import org.springframework.stereotype.Repository;
 
 import com.uce.mercado.repository.model.Canton;
@@ -13,7 +14,7 @@ import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 @Repository
 @Transactional
-public class CantonRepositoyImpl implements ICantonRepository{
+public class CantonRepositoyImpl implements ICantonRepository {
 	@PersistenceContext 
 	private EntityManager entityManager;
 	@Override

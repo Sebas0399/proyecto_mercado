@@ -7,7 +7,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
-import org.springframework.hateoas.LinkRelation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import com.uce.mercado.repository.model.Canton;
-import com.uce.mercado.service.ICantonService;
-import com.uce.mercado.service.IProvinciaService;
+import com.uce.mercado.service.inter.ICantonService;
+import com.uce.mercado.service.inter.IProvinciaService;
 @RestController
 @CrossOrigin
 @RequestMapping("/canton")

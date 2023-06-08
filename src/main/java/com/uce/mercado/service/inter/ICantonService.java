@@ -1,4 +1,4 @@
-package com.uce.mercado.service;
+package com.uce.mercado.service.inter;
 
 import java.util.List;
 import java.util.Optional;

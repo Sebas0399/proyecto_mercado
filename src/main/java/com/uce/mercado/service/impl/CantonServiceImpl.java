@@ -1,18 +1,19 @@
-package com.uce.mercado.service;
+package com.uce.mercado.service.impl;
 
 import java.util.List;
 import java.util.Optional;
 
+import com.uce.mercado.service.inter.ICantonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uce.mercado.repository.ICantonRepository;
+import com.uce.mercado.repository.inter.ICantonRepository;
 import com.uce.mercado.repository.model.Canton;
 
 @Service
-public class CantonServiceImpl implements ICantonService{
+public class CantonServiceImpl implements ICantonService {
 	@Autowired
-	ICantonRepository cantonRepo;
+	private ICantonRepository cantonRepo;
 	@Override
 	public Canton create(Canton canton) {
 		// TODO Auto-generated method stub

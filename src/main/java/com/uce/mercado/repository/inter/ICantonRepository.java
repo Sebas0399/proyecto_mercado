@@ -1,4 +1,4 @@
-package com.uce.mercado.repository;
+package com.uce.mercado.repository.inter;
 
 import java.util.List;
 import java.util.Optional;

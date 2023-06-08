@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uce.mercado.repository.model.Canton;
 import com.uce.mercado.repository.model.Provincia;
-import com.uce.mercado.service.ICantonService;
-import com.uce.mercado.service.IProvinciaService;
+import com.uce.mercado.service.inter.ICantonService;
+import com.uce.mercado.service.inter.IProvinciaService;
 
 @RestController
 @RequestMapping("/provincia")
