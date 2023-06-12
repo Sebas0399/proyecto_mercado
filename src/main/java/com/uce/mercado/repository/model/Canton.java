@@ -27,7 +27,6 @@ public class Canton extends RepresentationModel<Canton>implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "canton_id")
 	private Integer id;
-	
 
 	@Column(name = "canton_codigo")
 	private String codigo;
@@ -35,11 +34,12 @@ public class Canton extends RepresentationModel<Canton>implements Serializable{
 	private String nombre;
 	@ManyToOne( fetch = FetchType.LAZY,cascade = CascadeType.ALL )
 	@JoinColumn(name="provincia_id")
-	
 	private Provincia provincia;
 	@OneToMany(mappedBy = "canton" ,fetch = FetchType.LAZY)
 	@JsonBackReference
 	private List<Parroquia> parroquias;
+
+
 	public Integer getId() {
 		return id;
 	}

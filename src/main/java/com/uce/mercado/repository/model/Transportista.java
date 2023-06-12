@@ -1,9 +1,11 @@
 package com.uce.mercado.repository.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "transportista")
@@ -21,9 +23,9 @@ public class Transportista extends RepresentationModel<Transportista> implements
     private String nombre;
 
 
-  @ManyToOne( fetch = FetchType.LAZY,cascade = CascadeType.ALL )
-   @JoinColumn(name="transporte_id")
-  private Transporte transporte;
+    @OneToMany(mappedBy = "transportista" ,fetch = FetchType.LAZY)
+    @JsonBackReference
+    private List<Transporte> transportes;
 
     public Integer getId() {
         return id;
@@ -49,11 +51,11 @@ public class Transportista extends RepresentationModel<Transportista> implements
         this.nombre = nombre;
     }
 
-    public Transporte getTransporte() {
-        return transporte;
+    public List<Transporte> getTransportes() {
+        return transportes;
     }
 
-    public void setTransporte(Transporte transporte) {
-        this.transporte = transporte;
+    public void setTransportes(List<Transporte> transportes) {
+        this.transportes = transportes;
     }
 }

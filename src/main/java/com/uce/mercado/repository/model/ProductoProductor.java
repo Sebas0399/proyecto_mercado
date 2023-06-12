@@ -11,8 +11,8 @@ public class ProductoProductor {
     @Column(name = "producto_productor_id")
     private Integer id;
 
-   @ManyToOne( fetch = FetchType.LAZY,cascade = CascadeType.ALL )
-   @JoinColumn(name="producto_codigo")
+    @ManyToOne( fetch = FetchType.LAZY,cascade = CascadeType.ALL )
+    @JoinColumn(name="producto_codigo")
     private Producto producto;
     @ManyToOne( fetch = FetchType.LAZY,cascade = CascadeType.ALL )
     @JoinColumn(name="productorTO_cedula")

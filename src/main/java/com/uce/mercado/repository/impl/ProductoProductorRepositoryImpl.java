@@ -4,6 +4,7 @@ import com.uce.mercado.repository.inter.IProductoProductorRepository;
 import com.uce.mercado.repository.model.ProductoProductor;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
@@ -40,6 +41,10 @@ public class ProductoProductorRepositoryImpl implements IProductoProductorReposi
 
     @Override
     public Optional<List<ProductoProductor>> readByCodigo(String codigo) {
-        return Optional.empty();
+        TypedQuery myQuery=this.entityManager.createQuery("SELECT p FROM productoProductor p WHERE p.id=:id", ProductoProductor.class);
+        myQuery.setParameter("id",codigo);
+        List<ProductoProductor>res=myQuery.getResultList();
+
+        return Optional.ofNullable(res);
     }
 }

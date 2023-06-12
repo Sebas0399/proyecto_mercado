@@ -32,6 +32,8 @@ public class Provincia extends RepresentationModel<Provincia>implements Serializ
 	@OneToMany(mappedBy = "provincia" ,fetch = FetchType.LAZY)
 	@JsonBackReference
 	private List<Canton> cantones;
+
+
 	//constructor
 	public Provincia() {
 		super();

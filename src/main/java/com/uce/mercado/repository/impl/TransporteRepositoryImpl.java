@@ -2,6 +2,7 @@ package com.uce.mercado.repository.impl;
 
 import com.uce.mercado.repository.inter.ITransporteRepository;
 import com.uce.mercado.repository.model.Transporte;
+import com.uce.mercado.repository.model.Transportista;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -40,7 +41,9 @@ public class TransporteRepositoryImpl implements ITransporteRepository {
     @Override
     public Optional<List<Transporte>> readByPlaca(String placa) {
         TypedQuery myQuery=this.entityManager.createQuery("SELEC t FROM Transporte t WHERE t.placa=:placa",Transporte.class);
+        myQuery.setParameter("placa",placa);
         List<Transporte>res=myQuery.getResultList();
         return Optional.ofNullable(res);
+
     }
 }

@@ -25,10 +25,13 @@ public class Transporte extends RepresentationModel<Transporte> implements Seria
     @Column(name = "productor_cedula")
     private String cedula;
 
-   @OneToMany(mappedBy = "transporte" ,fetch = FetchType.LAZY)
-   @JsonBackReference
-   private List<Transportista> transportistas;
+    @ManyToOne( fetch = FetchType.LAZY,cascade = CascadeType.ALL )
+    @JoinColumn(name="transportista_id")
+    private Transportista transportista;
 
+    @OneToMany(mappedBy = "transporte" ,fetch = FetchType.LAZY)
+    @JsonBackReference
+    private List<GuiaRemision> guiasRemision;
 
     public Integer getId() {
         return id;
@@ -62,11 +65,20 @@ public class Transporte extends RepresentationModel<Transporte> implements Seria
         this.cedula = cedula;
     }
 
-    public List<Transportista> getTransportistas() {
-        return transportistas;
+
+    public Transportista getTransportista() {
+        return transportista;
     }
 
-    public void setTransportistas(List<Transportista> transportistas) {
-        this.transportistas = transportistas;
+    public void setTransportista(Transportista transportista) {
+        this.transportista = transportista;
+    }
+
+    public List<GuiaRemision> getGuiasRemision() {
+        return guiasRemision;
+    }
+
+    public void setGuiasRemision(List<GuiaRemision> guiasRemision) {
+        this.guiasRemision = guiasRemision;
     }
 }
