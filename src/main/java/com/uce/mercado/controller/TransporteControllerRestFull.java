@@ -10,6 +10,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/transporte")
@@ -21,5 +24,17 @@ public class TransporteControllerRestFull {
 
         Transporte savedTransporte = this.transporteService.create(transporte);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedTransporte);
+    }
+
+
+    @GetMapping(path="placa/{placa}")
+    public ResponseEntity<List<Transporte>>consultaCedula(@PathVariable String placa){
+        Optional<List<Transporte>> bookOptional = this.transporteService.readByPlaca(placa);
+        if (bookOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        List<Transporte> transportes = (bookOptional.get());
+        return ResponseEntity.ok(transportes);
     }
 }

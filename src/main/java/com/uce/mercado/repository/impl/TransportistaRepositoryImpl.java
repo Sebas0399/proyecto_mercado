@@ -1,6 +1,7 @@
 package com.uce.mercado.repository.impl;
 
 import com.uce.mercado.repository.inter.ITransortistaRepository;
+import com.uce.mercado.repository.model.Canton;
 import com.uce.mercado.repository.model.Transportista;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -35,6 +36,14 @@ public class TransportistaRepositoryImpl implements ITransortistaRepository {
     @Override
     public void delete(Integer id) {
         this.entityManager.remove(id);
+    }
+
+    @Override
+    public Optional<List<Transportista>> readByCedula(String cedula) {
+        TypedQuery<Transportista>myQuery=this.entityManager.createQuery("SELECT t FROM Transportista t WHERE t.cedula=:cedula",Transportista.class);
+        myQuery.setParameter("cedula", cedula);
+        List<Transportista>res=myQuery.getResultList();
+        return Optional.ofNullable(res);
     }
 
 

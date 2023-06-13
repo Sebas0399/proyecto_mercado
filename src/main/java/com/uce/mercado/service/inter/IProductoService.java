@@ -14,4 +14,6 @@ public interface IProductoService {
     public void delete(Integer id);
     public Optional<List<Producto>> readByCodigo(String codigo);
 
+    public Optional<List<Producto>> readByNombre(String nombre);
+
 }

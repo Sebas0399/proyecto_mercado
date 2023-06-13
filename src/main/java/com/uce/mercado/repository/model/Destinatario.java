@@ -10,6 +10,8 @@ import java.util.List;
 @Entity
 @Table(name = "destinatario")
 public class Destinatario extends RepresentationModel<Destinatario> implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "destinatario_id")

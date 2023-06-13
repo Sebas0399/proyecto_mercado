@@ -41,8 +41,16 @@ public class ProductoRepositoryImpl implements IProductoRepository {
 
     @Override
     public Optional<List<Producto>> readByCodigo(String codigo) {
-        TypedQuery<Producto> myQuery=this.entityManager.createQuery("SELECT p FROM Producto o WHERE p.codigo=:codigo",Producto.class);
+        TypedQuery<Producto> myQuery=this.entityManager.createQuery("SELECT p FROM Producto p WHERE p.codigo=:codigo",Producto.class);
         myQuery.setParameter("codigo", codigo);
+        List<Producto>res=myQuery.getResultList();
+        return Optional.ofNullable(res);
+    }
+
+    @Override
+    public Optional<List<Producto>> readByNombre(String nombre) {
+        TypedQuery<Producto> myQuery=this.entityManager.createQuery("SELECT p FROM Producto p WHERE p.nombre=:nombre",Producto.class);
+        myQuery.setParameter("nombre", nombre);
         List<Producto>res=myQuery.getResultList();
         return Optional.ofNullable(res);
     }
