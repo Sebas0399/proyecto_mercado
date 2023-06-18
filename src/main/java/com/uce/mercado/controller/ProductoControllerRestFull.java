@@ -2,6 +2,7 @@ package com.uce.mercado.controller;
 
 
 import com.uce.mercado.repository.model.Producto;
+import com.uce.mercado.repository.model.ProductoProductor;
 import com.uce.mercado.service.inter.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,22 @@ public class ProductoControllerRestFull {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedProducto);
     }
 
+    @GetMapping(path="/{id}")
+    public ResponseEntity<Producto>consultarId(@PathVariable Integer id){
+        Optional<Producto> bookOptional = this.productoService.read(id);
+        if (bookOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Producto producto = (bookOptional.get());
+        return ResponseEntity.ok(producto);
+    }
+
+    @PutMapping(path = "/{id}")
+    public void actualizarProducto(@RequestBody Producto producto, @PathVariable Integer id) {
+        producto.setId(id);
+        this.productoService.update(producto);
+    }
 
     @GetMapping(path="codigo/{codigo}")
     public ResponseEntity<List<Producto>> consultaCodigo(@PathVariable String codigo){

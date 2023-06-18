@@ -1,7 +1,6 @@
 package com.uce.mercado.repository.impl;
 
-import com.uce.mercado.repository.inter.ITransortistaRepository;
-import com.uce.mercado.repository.model.Canton;
+import com.uce.mercado.repository.inter.ITransportistaRepository;
 import com.uce.mercado.repository.model.Transportista;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 @Transactional
 @Repository
-public class TransportistaRepositoryImpl implements ITransortistaRepository {
+public class TransportistaRepositoryImpl implements ITransportistaRepository {
     @PersistenceContext
     private EntityManager entityManager;
     @Override

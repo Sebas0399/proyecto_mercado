@@ -3,6 +3,7 @@ package com.uce.mercado.service.impl;
 import com.uce.mercado.repository.inter.IProductoProductorRepository;
 import com.uce.mercado.repository.inter.IProductorRepository;
 import com.uce.mercado.repository.model.ProductoProductor;
+import com.uce.mercado.service.inter.IProductoProductorService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductoProductorServiceImpl implements IProductoProductorRepository {
+public class ProductoProductorServiceImpl implements IProductoProductorService {
 
     @Autowired
     IProductoProductorRepository productoProductorRepository;

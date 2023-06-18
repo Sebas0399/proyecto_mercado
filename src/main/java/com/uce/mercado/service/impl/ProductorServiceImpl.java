@@ -2,6 +2,7 @@ package com.uce.mercado.service.impl;
 
 import com.uce.mercado.repository.inter.IProductorRepository;
 import com.uce.mercado.repository.model.Productor;
+import com.uce.mercado.service.inter.IProductorService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -12,13 +13,13 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class ProductorServiceImpl implements IProductorRepository {
+public class ProductorServiceImpl implements IProductorService {
 
     @Autowired
     IProductorRepository productorRepository;
 
     @Override
-    public Productor create(Productor productor) {
+    public Productor crearProductor(Productor productor) {
         return this.productorRepository.create(productor);
     }
 

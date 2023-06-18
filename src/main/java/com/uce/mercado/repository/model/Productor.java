@@ -15,7 +15,6 @@ public class Productor {
     @Column(name = "productor_id")
     private Integer id;
 
-
     @Column(name = "productor_cedula")
     private String cedula;
     @Column(name = "productor_nombre")

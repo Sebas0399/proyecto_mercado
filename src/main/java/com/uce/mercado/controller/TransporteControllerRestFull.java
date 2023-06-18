@@ -1,5 +1,6 @@
 package com.uce.mercado.controller;
 
+import com.uce.mercado.repository.model.ProductoProductor;
 import com.uce.mercado.repository.model.Transporte;
 import com.uce.mercado.repository.model.Transportista;
 import com.uce.mercado.service.inter.ITransporteService;
@@ -26,9 +27,26 @@ public class TransporteControllerRestFull {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedTransporte);
     }
 
+    @GetMapping(path="/{id}")
+    public ResponseEntity<Transporte>consultarId(@PathVariable Integer id){
+        Optional<Transporte> bookOptional = this.transporteService.read(id);
+        if (bookOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Transporte transporte = (bookOptional.get());
+        return ResponseEntity.ok(transporte);
+    }
+
+    @PutMapping(path = "/{id}")
+    public void actualizarTransporte(@RequestBody Transporte transporte, @PathVariable Integer id) {
+        transporte.setId(id);
+        this.transporteService.update(transporte);
+    }
+
 
     @GetMapping(path="placa/{placa}")
-    public ResponseEntity<List<Transporte>>consultaCedula(@PathVariable String placa){
+    public ResponseEntity<List<Transporte>>consultarPlaca(@PathVariable String placa){
         Optional<List<Transporte>> bookOptional = this.transporteService.readByPlaca(placa);
         if (bookOptional.isEmpty()) {
             return ResponseEntity.notFound().build();

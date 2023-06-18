@@ -16,6 +16,7 @@ import java.util.Optional;
 public class ParroquiaControllerRestFul {
     @Autowired
     private IParroquiaService parroquiaService;
+
     @GetMapping(path="codigo/{codigo}")
     public ResponseEntity<List<Parroquia>> consultaCodgio(@PathVariable String codigo){
         Optional<List<Parroquia>> bookOptional = this.parroquiaService.readByCodigo(codigo);
