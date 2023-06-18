@@ -2,10 +2,12 @@ package com.uce.mercado.service.impl;
 
 import com.uce.mercado.repository.inter.IGuiaRemisionRepository;
 import com.uce.mercado.repository.model.GuiaRemision;
+import com.uce.mercado.repository.model.ProductoGuia;
 import com.uce.mercado.service.inter.IGuiaRemisionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 @Service
 public class GuiaRemisionServiceImpl implements IGuiaRemisionService {
@@ -27,7 +29,19 @@ public class GuiaRemisionServiceImpl implements IGuiaRemisionService {
     }
 
     @Override
-    public void delete(Integer id) {
-        this.guiaRemisionRepository.delete(id);
+    public boolean delete(Integer id) {
+        try{
+
+            this.guiaRemisionRepository.delete(id);
+            return true;        }
+        catch (Exception e){
+            return false;
+        }
+
+    }
+
+    @Override
+    public Optional<List<GuiaRemision>> readByNumero(String numero) {
+        return this.guiaRemisionRepository.readByNumero(numero);
     }
 }

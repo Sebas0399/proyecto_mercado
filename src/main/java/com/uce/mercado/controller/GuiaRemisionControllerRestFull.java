@@ -1,18 +1,16 @@
 package com.uce.mercado.controller;
 
-import com.uce.mercado.repository.model.Canton;
-import com.uce.mercado.repository.model.GuiaRemision;
-import com.uce.mercado.repository.model.Transporte;
+import com.uce.mercado.repository.model.*;
 import com.uce.mercado.service.inter.IGuiaRemisionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -27,5 +25,33 @@ public class GuiaRemisionControllerRestFull {
 
         GuiaRemision savedGuiaRemision = this.guiaRemisionService.create(guiaRemision);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedGuiaRemision);
+    }
+
+    @GetMapping(path = "/numero/{numero}")
+
+    public ResponseEntity<List<GuiaRemision>> consultaCodigo(@PathVariable String numero) {
+        Optional<List<GuiaRemision>> bookOptional = this.guiaRemisionService.readByNumero(numero);
+        if (bookOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        List<GuiaRemision> guiaRemisions = (bookOptional.get());
+        return ResponseEntity.ok(guiaRemisions);
+    }
+
+    @PutMapping(path = "/{id}")
+    public void actualizarGuia(@RequestBody GuiaRemision guiaRemision, @PathVariable Integer id) {
+        guiaRemision.setId(id);
+        this.guiaRemisionService.update(guiaRemision);
+    }
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<GuiaRemision>borrarGuia(@PathVariable Integer id){
+       boolean ok= this.guiaRemisionService.delete(id);
+        if (ok){
+            return new ResponseEntity<GuiaRemision>(HttpStatus.NO_CONTENT);
+        }
+        else {
+            return  new ResponseEntity<GuiaRemision>(HttpStatus.OK);
+        }
     }
 }
