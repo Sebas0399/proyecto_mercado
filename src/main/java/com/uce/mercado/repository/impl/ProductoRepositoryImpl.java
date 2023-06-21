@@ -54,4 +54,22 @@ public class ProductoRepositoryImpl implements IProductoRepository {
         List<Producto>res=myQuery.getResultList();
         return Optional.ofNullable(res);
     }
+
+    @Override
+    public Optional<List<Producto>> likeByLetter(String letter) {
+        TypedQuery<Producto> myQuery=this.entityManager.createQuery("SELECT p FROM Producto p WHERE p.nombre LIKE:letter",Producto.class);
+        myQuery.setParameter("letter", "%" + letter + "%");
+        List<Producto>res=myQuery.getResultList();
+
+        return Optional.ofNullable(res);
+    }
+
+    @Override
+    public Optional<List<Producto>> getAll() {
+        TypedQuery<Producto> myQuery=this.entityManager.createQuery("SELECT p FROM Producto p",Producto.class);
+
+        List<Producto>res=myQuery.getResultList();
+
+        return Optional.ofNullable(res);
+    }
 }

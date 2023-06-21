@@ -2,6 +2,7 @@ package com.uce.mercado.service.impl;
 
 import com.uce.mercado.repository.inter.IProductoGuiaRepository;
 import com.uce.mercado.repository.model.ProductoGuia;
+import com.uce.mercado.service.inter.IProductoGuiaService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductoGuiaServiceImpl implements IProductoGuiaRepository {
+public class ProductoGuiaServiceImpl implements IProductoGuiaService {
 
     @Autowired
     IProductoGuiaRepository productoGuiaRepository;

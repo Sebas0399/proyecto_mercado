@@ -15,5 +15,7 @@ public interface IProductoService {
     public Optional<List<Producto>> readByCodigo(String codigo);
 
     public Optional<List<Producto>> readByNombre(String nombre);
+    public Optional<List<Producto>> likeByLetter(String letter);
+    public Optional<List<Producto>> getAll();
 
 }

@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/producto")
+@CrossOrigin
 public class ProductoControllerRestFull {
     @Autowired
     private IProductoService productoService;
@@ -40,6 +41,27 @@ public class ProductoControllerRestFull {
     @GetMapping(path="nombre/{nombre}")
     public ResponseEntity<List<Producto>> consultaNombre(@PathVariable String nombre){
         Optional<List<Producto>> bookOptional = this.productoService.readByNombre(nombre);
+        if (bookOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        List<Producto> productos = (bookOptional.get());
+        return ResponseEntity.ok(productos);
+    }
+
+    @GetMapping(path="letra/{letra}")
+    public ResponseEntity<List<Producto>> consultaLetra(@PathVariable String letra){
+        Optional<List<Producto>> bookOptional = this.productoService.likeByLetter(letra);
+        if (bookOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        List<Producto> productos = (bookOptional.get());
+        return ResponseEntity.ok(productos);
+    }
+    @GetMapping
+    public ResponseEntity<List<Producto>> obtenerTodos(){
+        Optional<List<Producto>> bookOptional = this.productoService.getAll();
         if (bookOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
         }

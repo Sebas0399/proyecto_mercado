@@ -19,10 +19,10 @@ public class Producto {
     private String nombre;
 
     @OneToMany(mappedBy = "producto" ,fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonBackReference(value = "producto-productor")
     private List<ProductoProductor> productosProductor;
     @OneToMany(mappedBy = "producto" ,fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonBackReference(value = "producto-guia")
     private List<ProductoGuia> productoGuias;
     public Integer getId() {
         return id;

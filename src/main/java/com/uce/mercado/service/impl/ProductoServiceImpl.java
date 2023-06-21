@@ -45,4 +45,14 @@ public class ProductoServiceImpl implements IProductoService {
     public Optional<List<Producto>> readByNombre(String nombre) {
         return this.productoRepository.readByNombre(nombre);
     }
+
+    @Override
+    public Optional<List<Producto>> likeByLetter(String letter) {
+        return this.productoRepository.likeByLetter(letter);
+    }
+
+    @Override
+    public Optional<List<Producto>> getAll() {
+        return  this.productoRepository.getAll();
+    }
 }
