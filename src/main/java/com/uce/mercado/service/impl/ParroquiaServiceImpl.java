@@ -36,4 +36,14 @@ public class ParroquiaServiceImpl implements IParroquiaService {
     public Optional<List<Parroquia>> readByCodigo(String codigo) {
         return this.parroquiaRepository.readByCodigo(codigo);
     }
+
+    @Override
+    public Optional<List<Parroquia>> readByLetter(String letra) {
+        return this.parroquiaRepository.readByLetter(letra);
+    }
+
+    @Override
+    public Optional<List<Parroquia>> getAll() {
+        return this.parroquiaRepository.getAll();
+    }
 }

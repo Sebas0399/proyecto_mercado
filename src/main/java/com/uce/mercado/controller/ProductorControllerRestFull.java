@@ -21,7 +21,7 @@ public class ProductorControllerRestFull {
     IProductorService productorService;
 
     @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<Productor> ingresarCanton(@RequestBody Productor productor) {
+    public ResponseEntity<Productor> ingresarProductor(@RequestBody Productor productor) {
         Productor savedProductor = this.productorService.create(productor);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedProductor);
     }

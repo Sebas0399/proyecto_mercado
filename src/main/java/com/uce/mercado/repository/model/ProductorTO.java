@@ -24,11 +24,11 @@ public class ProductorTO {
     @JoinColumn(name="productor_cedula")
     private Productor productor;
     @OneToMany(mappedBy = "productorTO" ,fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonBackReference(value = "productorTO-productoProductor")
     private List<ProductoProductor> productosProductor;
 
     @OneToMany(mappedBy = "productorTO" ,fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonBackReference(value = "productorTO-guiaRemision")
     private List<GuiaRemision> guiasRemision;
 
     public Integer getId() {

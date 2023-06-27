@@ -15,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/destinatario")
+@CrossOrigin
 public class DestinatarioControllerRestFull {
 
     @Autowired

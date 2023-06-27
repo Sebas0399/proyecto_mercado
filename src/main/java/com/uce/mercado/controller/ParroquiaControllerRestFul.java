@@ -2,6 +2,7 @@ package com.uce.mercado.controller;
 
 import com.uce.mercado.repository.model.Canton;
 import com.uce.mercado.repository.model.Parroquia;
+import com.uce.mercado.repository.model.Producto;
 import com.uce.mercado.service.inter.IParroquiaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,5 +26,26 @@ public class ParroquiaControllerRestFul {
 
         List<Parroquia> canton = (bookOptional.get());
         return ResponseEntity.ok(canton);
+    }
+    @GetMapping(path="letra/{letra}")
+    public ResponseEntity<List<Parroquia>> letraParroquia(@PathVariable String letra){
+        Optional<List<Parroquia>> bookOptional = this.parroquiaService.readByLetter(letra);
+        if (bookOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        List<Parroquia> canton = (bookOptional.get());
+        return ResponseEntity.ok(canton);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Parroquia>> obtenerTodos(){
+        Optional<List<Parroquia>> bookOptional = this.parroquiaService.getAll();
+        if (bookOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        List<Parroquia> parroquias = (bookOptional.get());
+        return ResponseEntity.ok(parroquias);
     }
 }

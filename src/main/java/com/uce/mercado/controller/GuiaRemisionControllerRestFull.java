@@ -17,6 +17,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("/guiaRemision")
+@CrossOrigin
+
 public class GuiaRemisionControllerRestFull {
     @Autowired
     private IGuiaRemisionService guiaRemisionService;

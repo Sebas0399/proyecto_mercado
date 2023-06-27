@@ -2,6 +2,7 @@ package com.uce.mercado.repository.impl;
 
 import com.uce.mercado.repository.inter.IParroquiaRepository;
 import com.uce.mercado.repository.model.Parroquia;
+import com.uce.mercado.repository.model.Producto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -42,6 +43,24 @@ public class ParroquiaRepositoryImpl implements IParroquiaRepository {
         TypedQuery<Parroquia> myQuery=this.entityManager.createQuery("SELECT p FROM Parroquia p WHERE p.codigo=:codigo",Parroquia.class);
         myQuery.setParameter("codigo", codigo);
         List<Parroquia>res=myQuery.getResultList();
+        return Optional.ofNullable(res);
+    }
+
+    @Override
+    public Optional<List<Parroquia>> getAll() {
+        TypedQuery<Parroquia> myQuery=this.entityManager.createQuery("SELECT p FROM Parroquia p",Parroquia.class);
+
+        List<Parroquia>res=myQuery.getResultList();
+
+        return Optional.ofNullable(res);
+    }
+
+    @Override
+    public Optional<List<Parroquia>> readByLetter(String letter) {
+        TypedQuery<Parroquia> myQuery=this.entityManager.createQuery("SELECT p FROM Parroquia p WHERE p.nombre LIKE:letter",Parroquia.class);
+        myQuery.setParameter("letter", "%" + letter + "%");
+        List<Parroquia>res=myQuery.getResultList();
+
         return Optional.ofNullable(res);
     }
 }

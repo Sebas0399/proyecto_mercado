@@ -1,6 +1,7 @@
 package com.uce.mercado.repository.inter;
 
 import com.uce.mercado.repository.model.Parroquia;
+import com.uce.mercado.repository.model.Producto;
 import com.uce.mercado.repository.model.ProductoProductor;
 
 import java.util.List;
@@ -12,4 +13,8 @@ public interface IParroquiaRepository {
     public void update(Parroquia parroquia);
     public void delete(Integer id);
     public Optional<List<Parroquia>> readByCodigo(String codigo);
+    public Optional<List<Parroquia>> readByLetter(String letra);
+
+    public Optional<List<Parroquia>> getAll();
+
 }

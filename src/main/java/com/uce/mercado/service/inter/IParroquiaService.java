@@ -11,4 +11,8 @@ public interface IParroquiaService {
     public void update(Parroquia parroquia);
     public void delete(Integer id);
     public Optional<List<Parroquia>> readByCodigo(String codigo);
+    public Optional<List<Parroquia>> readByLetter(String letra);
+    public Optional<List<Parroquia>> getAll();
+
+
 }

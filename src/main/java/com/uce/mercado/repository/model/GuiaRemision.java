@@ -32,7 +32,7 @@ public class GuiaRemision extends RepresentationModel<GuiaRemision> implements S
 
 
     @OneToMany(mappedBy = "guiaRemision" ,fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonBackReference(value = "guiaRemision-productosGuia")
     private List<ProductoGuia> productosGuias;
 
     public Integer getId() {

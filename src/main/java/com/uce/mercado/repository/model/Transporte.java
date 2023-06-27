@@ -30,7 +30,7 @@ public class Transporte extends RepresentationModel<Transporte> implements Seria
     private Transportista transportista;
 
     @OneToMany(mappedBy = "transporte" ,fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonBackReference(value = "transporte-guia")
     private List<GuiaRemision> guiasRemision;
 
     public Integer getId() {

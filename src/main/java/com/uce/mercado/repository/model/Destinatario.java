@@ -23,7 +23,7 @@ public class Destinatario extends RepresentationModel<Destinatario> implements S
     @Column(name = "destinatario_telefono")
     private String telefono;
     @OneToMany(mappedBy = "destinatario" ,fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonBackReference(value = "desinataio-guia")
     private List<GuiaRemision> guiasRemision;
 
     public Integer getId() {
