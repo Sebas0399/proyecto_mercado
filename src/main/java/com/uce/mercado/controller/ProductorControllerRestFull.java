@@ -1,8 +1,7 @@
 package com.uce.mercado.controller;
 
-import com.uce.mercado.repository.model.Canton;
-import com.uce.mercado.repository.model.Productor;
-import com.uce.mercado.repository.model.Provincia;
+import com.uce.mercado.repository.model.*;
+import com.uce.mercado.service.inter.IParroquiaService;
 import com.uce.mercado.service.inter.IProductorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -19,11 +19,14 @@ public class ProductorControllerRestFull {
 
     @Autowired
     IProductorService productorService;
-
+    @Autowired
+    IParroquiaService parroquiaService;
     @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<Productor> ingresarProductor(@RequestBody Productor productor) {
-        Productor savedProductor = this.productorService.create(productor);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedProductor);
+        System.out.println(productor);
+        productor.setParroquia(this.parroquiaService.readByLetter("C").get().get(0));
+        this.productorService.create(productor);
+        return ResponseEntity.status(HttpStatus.CREATED).body(productor);
     }
 
     @GetMapping(path="/{id}")
@@ -42,8 +45,26 @@ public class ProductorControllerRestFull {
         productor.setId(id);
         this.productorService.update(productor);
     }
+    @GetMapping(path="letra/{letra}")
+    public ResponseEntity<List<Productor>> consultaCedula(@PathVariable String letra){
+        Optional<List<Productor>> bookOptional = this.productorService.likeByCedula(letra);
+        if (bookOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
 
+        List<Productor> productors = (bookOptional.get());
+        return ResponseEntity.ok(productors);
+    }
+    @GetMapping
+    public ResponseEntity<List<Productor>> obtenerTodos(){
+        Optional<List<Productor>> bookOptional = this.productorService.getAll();
+        if (bookOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
 
+        List<Productor> productors = (bookOptional.get());
+        return ResponseEntity.ok(productors);
+    }
 
 
 }

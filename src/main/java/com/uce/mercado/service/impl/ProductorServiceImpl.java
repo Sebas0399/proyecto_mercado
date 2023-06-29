@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,5 +37,15 @@ public class ProductorServiceImpl implements IProductorService {
     @Override
     public void delete(Integer id) {
         this.productorRepository.delete(id);
+    }
+
+    @Override
+    public Optional<List<Productor>> likeByCedula(String cedula) {
+        return this.productorRepository.likeByCedula(cedula);
+    }
+
+    @Override
+    public Optional<List<Productor>> getAll() {
+        return this.productorRepository.getAll();
     }
 }

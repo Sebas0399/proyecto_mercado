@@ -8,6 +8,14 @@ import java.io.Serializable;
 @Entity
 @Table(name="parroquia")
 public class Parroquia extends RepresentationModel<Parroquia> implements Serializable {
+    private static final long serialVersionUID = 1L;
+    public Parroquia() {
+        // Default constructor
+    }
+
+    public Parroquia(String name) {
+        this.nombre = name;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "parroquia_id")
