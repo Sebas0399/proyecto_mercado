@@ -2,6 +2,7 @@ package com.uce.mercado.controller;
 
 import com.uce.mercado.repository.model.Destinatario;
 import com.uce.mercado.repository.model.Parroquia;
+import com.uce.mercado.repository.model.Productor;
 import com.uce.mercado.repository.model.Provincia;
 import com.uce.mercado.service.inter.IDestinatarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,16 @@ public class DestinatarioControllerRestFull {
     @GetMapping(path="cedula/{cedula}")
     public ResponseEntity<List<Destinatario>> consultaCedula(@PathVariable String cedula){
         Optional<List<Destinatario>> bookOptional = this.destinatarioService.readByCedula(cedula);
+        if (bookOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        List<Destinatario> destinatarios = (bookOptional.get());
+        return ResponseEntity.ok(destinatarios);
+    }
+    @GetMapping
+    public ResponseEntity<List<Destinatario>> obtenerTodos(){
+        Optional<List<Destinatario>> bookOptional = this.destinatarioService.getAll();
         if (bookOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
         }

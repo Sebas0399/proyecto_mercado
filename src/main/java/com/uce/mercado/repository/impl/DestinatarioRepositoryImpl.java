@@ -3,6 +3,7 @@ package com.uce.mercado.repository.impl;
 import com.uce.mercado.repository.inter.IDestinatarioRepository;
 import com.uce.mercado.repository.model.Canton;
 import com.uce.mercado.repository.model.Destinatario;
+import com.uce.mercado.repository.model.Productor;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -46,6 +47,15 @@ public class DestinatarioRepositoryImpl implements IDestinatarioRepository {
         TypedQuery<Destinatario> myQuery=this.entityManager.createQuery("SELECT d FROM Destinatario d WHERE d.cedula=:cedula",Destinatario.class);
         myQuery.setParameter("cedula", cedula);
         List<Destinatario>res=myQuery.getResultList();
+        return Optional.ofNullable(res);
+    }
+
+    @Override
+    public Optional<List<Destinatario>> getAll() {
+        TypedQuery<Destinatario> myQuery=this.entityManager.createQuery("SELECT d FROM Destinatario d",Destinatario.class);
+        myQuery.setMaxResults(10);
+        List<Destinatario>res=myQuery.getResultList();
+
         return Optional.ofNullable(res);
     }
 }

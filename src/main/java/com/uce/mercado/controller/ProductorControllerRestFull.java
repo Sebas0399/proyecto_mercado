@@ -23,8 +23,7 @@ public class ProductorControllerRestFull {
     IParroquiaService parroquiaService;
     @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<Productor> ingresarProductor(@RequestBody Productor productor) {
-        System.out.println(productor);
-        productor.setParroquia(this.parroquiaService.readByLetter("C").get().get(0));
+        productor.setParroquia(this.parroquiaService.readByLetter(productor.getParroquia().getNombre()).get().get(0));
         this.productorService.create(productor);
         return ResponseEntity.status(HttpStatus.CREATED).body(productor);
     }

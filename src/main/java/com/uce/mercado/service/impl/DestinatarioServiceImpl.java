@@ -39,4 +39,9 @@ public class DestinatarioServiceImpl implements IDestinatarioService {
     public Optional<List<Destinatario>> readByCedula(String cedula) {
         return this.destinatarioRepository.readByCedula(cedula);
     }
+
+    @Override
+    public Optional<List<Destinatario>> getAll() {
+        return this.destinatarioRepository.getAll();
+    }
 }
