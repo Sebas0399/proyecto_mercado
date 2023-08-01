@@ -11,4 +11,5 @@ public interface ITransportistaService {
     public void update(Transportista transportista);
     public void delete(Integer id);
     public Optional<List<Transportista>> readByCedula(String cedula);
+    public Optional<List<Transportista>> readAll();
 }

@@ -44,4 +44,9 @@ public class GuiaRemisionServiceImpl implements IGuiaRemisionService {
     public Optional<List<GuiaRemision>> readByNumero(String numero) {
         return this.guiaRemisionRepository.readByNumero(numero);
     }
+
+    @Override
+    public Optional<List<GuiaRemision>> getAll() {
+        return this.guiaRemisionRepository.getAll();
+    }
 }

@@ -17,6 +17,7 @@ public class ProductoRepositoryImpl implements IProductoRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
+
     @Override
     public Producto create(Producto producto) {
         this.entityManager.persist(producto);
@@ -25,50 +26,62 @@ public class ProductoRepositoryImpl implements IProductoRepository {
 
     @Override
     public Optional<Producto> read(Integer id) {
-        Producto producto= this.entityManager.find(Producto.class,id);
+        Producto producto = this.entityManager.find(Producto.class, id);
         return Optional.ofNullable(producto);
     }
 
     @Override
-    public void update(Producto producto) {
-        this.entityManager.merge(producto);
+    public Boolean update(Producto producto) {
+        Producto productoAct = this.entityManager.merge(producto);
+        if (productoAct != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public void delete(Integer id) {
-        this.entityManager.remove(id);
+    public Boolean delete(Integer id) {
+
+        if (this.read(id).isPresent()) {
+
+            this.entityManager.remove(this.read(id).get());
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public Optional<List<Producto>> readByCodigo(String codigo) {
-        TypedQuery<Producto> myQuery=this.entityManager.createQuery("SELECT p FROM Producto p WHERE p.codigo=:codigo",Producto.class);
+        TypedQuery<Producto> myQuery = this.entityManager.createQuery("SELECT p FROM Producto p WHERE p.codigo=:codigo", Producto.class);
         myQuery.setParameter("codigo", codigo);
-        List<Producto>res=myQuery.getResultList();
+        List<Producto> res = myQuery.getResultList();
         return Optional.ofNullable(res);
     }
 
     @Override
     public Optional<List<Producto>> readByNombre(String nombre) {
-        TypedQuery<Producto> myQuery=this.entityManager.createQuery("SELECT p FROM Producto p WHERE p.nombre=:nombre",Producto.class);
+        TypedQuery<Producto> myQuery = this.entityManager.createQuery("SELECT p FROM Producto p WHERE p.nombre=:nombre", Producto.class);
         myQuery.setParameter("nombre", nombre);
-        List<Producto>res=myQuery.getResultList();
+        List<Producto> res = myQuery.getResultList();
         return Optional.ofNullable(res);
     }
 
     @Override
     public Optional<List<Producto>> likeByLetter(String letter) {
-        TypedQuery<Producto> myQuery=this.entityManager.createQuery("SELECT p FROM Producto p WHERE p.nombre LIKE:letter",Producto.class);
+        TypedQuery<Producto> myQuery = this.entityManager.createQuery("SELECT p FROM Producto p WHERE p.nombre LIKE:letter", Producto.class);
         myQuery.setParameter("letter", "%" + letter + "%");
-        List<Producto>res=myQuery.getResultList();
+        List<Producto> res = myQuery.getResultList();
 
         return Optional.ofNullable(res);
     }
 
     @Override
     public Optional<List<Producto>> getAll() {
-        TypedQuery<Producto> myQuery=this.entityManager.createQuery("SELECT p FROM Producto p",Producto.class);
+        TypedQuery<Producto> myQuery = this.entityManager.createQuery("SELECT p FROM Producto p", Producto.class);
 
-        List<Producto>res=myQuery.getResultList();
+        List<Producto> res = myQuery.getResultList();
 
         return Optional.ofNullable(res);
     }

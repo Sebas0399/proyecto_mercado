@@ -2,6 +2,7 @@ package com.uce.mercado.controller;
 
 import com.uce.mercado.repository.model.*;
 import com.uce.mercado.service.inter.IGuiaRemisionService;
+import com.uce.mercado.service.inter.IProductoGuiaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class GuiaRemisionControllerRestFull {
     @Autowired
     private IGuiaRemisionService guiaRemisionService;
+    @Autowired
+    private IProductoGuiaService productoGuiaService;
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE},produces={MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<GuiaRemision> ingresarGuia(@RequestBody GuiaRemision guiaRemision) {
 
@@ -38,6 +41,28 @@ public class GuiaRemisionControllerRestFull {
         }
 
         List<GuiaRemision> guiaRemisions = (bookOptional.get());
+        return ResponseEntity.ok(guiaRemisions);
+    }
+    @GetMapping
+
+    public ResponseEntity<List<GuiaRemision>> consultaTodos() {
+        Optional<List<GuiaRemision>> bookOptional = this.guiaRemisionService.getAll();
+        if (bookOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        List<GuiaRemision> guiaRemisions = (bookOptional.get());
+        return ResponseEntity.ok(guiaRemisions);
+    }
+    @GetMapping(path = "/{numero}/productos")
+    public ResponseEntity<List<ProductoGuia>> buscarPorProductoGuia(@PathVariable String numero) {
+        Optional<List<ProductoGuia>> bookOptional = this.productoGuiaService.readByNumeroGuia(numero);
+
+        if (bookOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        List<ProductoGuia> guiaRemisions = (bookOptional.get());
         return ResponseEntity.ok(guiaRemisions);
     }
 

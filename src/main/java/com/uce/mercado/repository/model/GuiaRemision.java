@@ -1,6 +1,7 @@
 package com.uce.mercado.repository.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.springframework.hateoas.RepresentationModel;
 
@@ -19,20 +20,20 @@ public class GuiaRemision extends RepresentationModel<GuiaRemision> implements S
     @Column(name = "guia_remision_numero")
     private String numero;
     @ManyToOne( fetch = FetchType.LAZY,cascade = CascadeType.ALL )
-    @JoinColumn(name="destinatario_cedula")
+    @JoinColumn(name="destinatario_id")
     private Destinatario destinatario;
 
     @ManyToOne( fetch = FetchType.LAZY,cascade = CascadeType.ALL )
-    @JoinColumn(name="transporte_placa")
+    @JoinColumn(name="transporte_id")
     private Transporte transporte;
 
     @ManyToOne( fetch = FetchType.LAZY,cascade = CascadeType.ALL )
-    @JoinColumn(name="productorTO_cedula")
+    @JoinColumn(name="productorTO_id")
     private ProductorTO productorTO;
 
 
     @OneToMany(mappedBy = "guiaRemision" ,fetch = FetchType.LAZY)
-    @JsonBackReference(value = "guiaRemision-productosGuia")
+     @JsonBackReference
     private List<ProductoGuia> productosGuias;
 
     public Integer getId() {
@@ -81,5 +82,13 @@ public class GuiaRemision extends RepresentationModel<GuiaRemision> implements S
 
     public void setProductorTO(ProductorTO productorTO) {
         this.productorTO = productorTO;
+    }
+
+    public List<ProductoGuia> getProductosGuias() {
+        return productosGuias;
+    }
+
+    public void setProductosGuias(List<ProductoGuia> productosGuias) {
+        this.productosGuias = productosGuias;
     }
 }

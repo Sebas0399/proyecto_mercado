@@ -36,4 +36,9 @@ this.transortistaRepository.delete(id);
     public Optional<List<Transportista>> readByCedula(String cedula) {
         return this.transortistaRepository.readByCedula(cedula);
     }
+
+    @Override
+    public Optional<List<Transportista>> readAll() {
+        return this.transortistaRepository.readAll();
+    }
 }

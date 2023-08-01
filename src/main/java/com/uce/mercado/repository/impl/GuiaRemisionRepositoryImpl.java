@@ -2,6 +2,7 @@ package com.uce.mercado.repository.impl;
 
 import com.uce.mercado.repository.inter.IGuiaRemisionRepository;
 import com.uce.mercado.repository.model.GuiaRemision;
+import com.uce.mercado.repository.model.Producto;
 import com.uce.mercado.repository.model.ProductoGuia;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -40,9 +41,17 @@ public class GuiaRemisionRepositoryImpl implements IGuiaRemisionRepository {
 
     @Override
     public Optional<List<GuiaRemision>> readByNumero(String numero) {
-        TypedQuery myQuery=this.entityManager.createQuery("SELECT g FROM guiaRemision g WHERE g.numero=:numero", GuiaRemision.class);
+        TypedQuery myQuery=this.entityManager.createQuery("SELECT g FROM GuiaRemision g WHERE g.numero=:numero", GuiaRemision.class);
         myQuery.setParameter("numero",numero);
         List<GuiaRemision>res=myQuery.getResultList();
+        return Optional.ofNullable(res);
+    }
+
+    public Optional<List<GuiaRemision>> getAll() {
+        TypedQuery<GuiaRemision> myQuery = this.entityManager.createQuery("SELECT gr FROM GuiaRemision gr", GuiaRemision.class);
+
+        List<GuiaRemision> res = myQuery.getResultList();
+
         return Optional.ofNullable(res);
     }
 }

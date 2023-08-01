@@ -12,5 +12,7 @@ public interface IGuiaRemisionService {
     public void update(GuiaRemision guiaRemision);
     public boolean delete(Integer id);
     public Optional<List<GuiaRemision>> readByNumero(String numero);
+    public Optional<List<GuiaRemision>> getAll();
+
 
 }

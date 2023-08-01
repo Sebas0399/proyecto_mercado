@@ -35,6 +35,11 @@ public class ProductoGuiaControllerRestFull {
         ProductoGuia productoGuia = (bookOptional.get());
         return ResponseEntity.ok(productoGuia);
     }
+    @GetMapping
+    public ResponseEntity<ProductoGuia>consultarTodos(){
+
+        return null;
+    }
 
     @PutMapping(path = "/{id}")
     public void actualizarProductoGuia(@RequestBody ProductoGuia productoGuia, @PathVariable Integer id) {

@@ -21,9 +21,11 @@ public class ProductoGuia {
 
     @ManyToOne( fetch = FetchType.LAZY,cascade = CascadeType.ALL )
     @JoinColumn(name="guia_remision_id")
+
     private GuiaRemision guiaRemision;
     @ManyToOne( fetch = FetchType.LAZY,cascade = CascadeType.ALL )
     @JoinColumn(name="producto_codigo")
+
     private Producto producto;
 
 
@@ -50,5 +52,21 @@ public class ProductoGuia {
 
     public void setUnidadMedida(String unidadMedida) {
         this.unidadMedida = unidadMedida;
+    }
+
+    public GuiaRemision getGuiaRemision() {
+        return guiaRemision;
+    }
+
+    public void setGuiaRemision(GuiaRemision guiaRemision) {
+        this.guiaRemision = guiaRemision;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 }

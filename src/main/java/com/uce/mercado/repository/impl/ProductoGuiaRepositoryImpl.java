@@ -42,10 +42,19 @@ public class ProductoGuiaRepositoryImpl implements IProductoGuiaRepository {
 
     @Override
     public Optional<List<ProductoGuia>> readByCodigo(String codigo) {
-        TypedQuery myQuery=this.entityManager.createQuery("SELECT p FROM productoGuia p WHERE p.id=:id", ProductoGuia.class);
+        TypedQuery myQuery=this.entityManager.createQuery("SELECT p FROM ProductoGuia p WHERE p.id=:id", ProductoGuia.class);
         myQuery.setParameter("id",codigo);
         List<ProductoGuia>res=myQuery.getResultList();
 
+        return Optional.ofNullable(res);
+    }
+
+    @Override
+    public Optional<List<ProductoGuia>> readByNumeroGuia(String numero) {
+        TypedQuery myQuery=this.entityManager.createQuery("SELECT p FROM ProductoGuia p WHERE p.guiaRemision.numero=:numero", ProductoGuia.class);
+        myQuery.setParameter("numero",numero);
+        List<ProductoGuia>res=myQuery.getResultList();
+        System.out.println(numero);
         return Optional.ofNullable(res);
     }
 }

@@ -36,4 +36,14 @@ public class TransportistaControllerRestFull {
         List<Transportista> transportistas = (bookOptional.get());
         return ResponseEntity.ok(transportistas);
     }
+    @GetMapping
+    public ResponseEntity<List<Transportista>>consultaTodos(){
+        Optional<List<Transportista>> bookOptional = this.transportistaService.readAll();
+        if (bookOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        List<Transportista> transportistas = (bookOptional.get());
+        return ResponseEntity.ok(transportistas);
+    }
 }

@@ -11,4 +11,5 @@ public interface IDestinatarioService {
     public void update(Destinatario destinatario);
     public void delete(Integer id);
     public Optional<List<Destinatario>> readByCedula(String cedula);
+    public Optional<List<Destinatario>> getAll();
 }

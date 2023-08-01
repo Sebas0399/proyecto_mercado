@@ -1,6 +1,5 @@
 package com.uce.mercado.repository.inter;
 
-import com.uce.mercado.repository.model.Canton;
 import com.uce.mercado.repository.model.Producto;
 
 import java.util.List;
@@ -11,8 +10,8 @@ public interface IProductoRepository {
 
     public Producto create(Producto producto);
     public Optional<Producto> read(Integer id);
-    public void update(Producto producto);
-    public void delete(Integer id);
+    public Boolean update(Producto producto);
+    public Boolean delete(Integer id);
     public Optional<List<Producto>> readByCodigo(String codigo);
 
     public Optional<List<Producto>> readByNombre(String nombre);

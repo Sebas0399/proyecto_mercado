@@ -43,4 +43,9 @@ public class ProductoGuiaServiceImpl implements IProductoGuiaService {
     public Optional<List<ProductoGuia>> readByCodigo(String codigo) {
         return this.productoGuiaRepository.readByCodigo(codigo);
     }
+
+    @Override
+    public Optional<List<ProductoGuia>> readByNumeroGuia(String numero) {
+        return this.productoGuiaRepository.readByNumeroGuia(numero);
+    }
 }

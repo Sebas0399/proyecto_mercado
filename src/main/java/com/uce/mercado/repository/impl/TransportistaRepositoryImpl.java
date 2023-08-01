@@ -46,5 +46,13 @@ public class TransportistaRepositoryImpl implements ITransortistaRepository {
         return Optional.ofNullable(res);
     }
 
+    @Override
+    public Optional<List<Transportista>> readAll() {
+        TypedQuery<Transportista>myQuery=this.entityManager.createQuery("SELECT t FROM Transportista t",Transportista.class);
+        List<Transportista>res=myQuery.getResultList();
+        System.out.println(res);
+        return Optional.ofNullable(res);
+    }
+
 
 }

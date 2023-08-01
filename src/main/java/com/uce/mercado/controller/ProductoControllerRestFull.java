@@ -69,6 +69,18 @@ public class ProductoControllerRestFull {
         List<Producto> productos = (bookOptional.get());
         return ResponseEntity.ok(productos);
     }
-
+    @PutMapping
+    public ResponseEntity actualizar(@RequestBody Producto producto){
+        if(this.productoService.update(producto)){
+            return ResponseEntity.ok(producto);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @DeleteMapping(path = "/{id}")
+    public void eliminar(@PathVariable Integer id) {
+        this.productoService.delete(id);
+    }
 
 }

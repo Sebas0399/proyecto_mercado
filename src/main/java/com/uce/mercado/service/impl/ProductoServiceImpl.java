@@ -16,6 +16,7 @@ public class ProductoServiceImpl implements IProductoService {
 
     @Autowired
     IProductoRepository productoRepository;
+
     @Override
     public Producto create(Producto producto) {
         return this.productoRepository.create(producto);
@@ -27,13 +28,13 @@ public class ProductoServiceImpl implements IProductoService {
     }
 
     @Override
-    public void update(Producto producto) {
-        this.productoRepository.update(producto);
+    public Boolean update(Producto producto) {
+        return this.productoRepository.update(producto);
     }
 
     @Override
-    public void delete(Integer id) {
-        this.productoRepository.delete(id);
+    public Boolean delete(Integer id) {
+        return this.productoRepository.delete(id);
     }
 
     @Override
@@ -53,6 +54,6 @@ public class ProductoServiceImpl implements IProductoService {
 
     @Override
     public Optional<List<Producto>> getAll() {
-        return  this.productoRepository.getAll();
+        return this.productoRepository.getAll();
     }
 }

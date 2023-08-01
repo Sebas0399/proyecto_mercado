@@ -11,5 +11,6 @@ public interface IProductoGuiaRepository {
     public void update(ProductoGuia productoGuia);
     public void delete(Integer id);
     public Optional<List<ProductoGuia>> readByCodigo(String codigo);
+    public Optional<List<ProductoGuia>> readByNumeroGuia(String numero);
 
 }

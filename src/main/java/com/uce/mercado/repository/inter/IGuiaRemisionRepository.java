@@ -12,4 +12,5 @@ public interface IGuiaRemisionRepository {
     public void update(GuiaRemision guiaRemision);
     public void delete(Integer id);
     public Optional<List<GuiaRemision>> readByNumero(String numero);
+    public Optional<List<GuiaRemision>> getAll();
 }
