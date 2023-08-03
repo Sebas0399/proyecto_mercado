@@ -19,20 +19,20 @@ public class GuiaRemision extends RepresentationModel<GuiaRemision> implements S
     private String guiaFecha;
     @Column(name = "guia_remision_numero")
     private String numero;
-    @ManyToOne( fetch = FetchType.LAZY,cascade = CascadeType.ALL )
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name="destinatario_id")
     private Destinatario destinatario;
 
-    @ManyToOne( fetch = FetchType.LAZY,cascade = CascadeType.ALL )
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name="transporte_id")
     private Transporte transporte;
 
-    @ManyToOne( fetch = FetchType.LAZY,cascade = CascadeType.ALL )
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name="productorTO_id")
     private ProductorTO productorTO;
 
 
-    @OneToMany(mappedBy = "guiaRemision" ,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "guiaRemision" ,fetch = FetchType.LAZY,cascade = CascadeType.ALL)
      @JsonBackReference
     private List<ProductoGuia> productosGuias;
 

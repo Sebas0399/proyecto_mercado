@@ -13,6 +13,8 @@ public interface IGuiaRemisionService {
     public boolean delete(Integer id);
     public Optional<List<GuiaRemision>> readByNumero(String numero);
     public Optional<List<GuiaRemision>> getAll();
+    public GuiaRemision create(String fecha,String cedulaDestinatario,String cedulaTransporte);
+
 
 
 }

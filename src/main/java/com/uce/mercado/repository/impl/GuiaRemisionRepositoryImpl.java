@@ -24,6 +24,11 @@ public class GuiaRemisionRepositoryImpl implements IGuiaRemisionRepository {
     }
 
     @Override
+    public GuiaRemision create(String fecha, String cedulaDestinatario, String cedulaTransporte) {
+        return null;
+    }
+
+    @Override
     public Optional<GuiaRemision> read(Integer id) {
         GuiaRemision guiaRemision=this.entityManager.find(GuiaRemision.class,id);
         return Optional.ofNullable(guiaRemision);
@@ -35,8 +40,13 @@ public class GuiaRemisionRepositoryImpl implements IGuiaRemisionRepository {
     }
 
     @Override
-    public void delete(Integer id) {
-        this.entityManager.remove(id);
+    public boolean delete(Integer id) {
+        if (this.read(id).isPresent()) {
+            this.entityManager.remove(this.read(id).get());
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

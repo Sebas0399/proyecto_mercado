@@ -37,4 +37,9 @@ public class TransporteServiceImpl implements ITransporteService {
 
         return this.transporteRepository.readByPlaca(placa);
     }
+
+    @Override
+    public Optional<List<Transporte>> readAll() {
+        return this.transporteRepository.readAll();
+    }
 }

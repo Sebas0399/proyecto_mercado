@@ -23,7 +23,7 @@ public class ProductoGuia {
     @JoinColumn(name="guia_remision_id")
 
     private GuiaRemision guiaRemision;
-    @ManyToOne( fetch = FetchType.LAZY,cascade = CascadeType.ALL )
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name="producto_codigo")
 
     private Producto producto;

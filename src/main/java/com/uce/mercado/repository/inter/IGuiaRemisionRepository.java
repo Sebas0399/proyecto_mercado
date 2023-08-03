@@ -8,9 +8,11 @@ import java.util.Optional;
 
 public interface IGuiaRemisionRepository {
     public GuiaRemision create(GuiaRemision guiaRemision);
+    public GuiaRemision create(String fecha,String cedulaDestinatario,String cedulaTransporte);
+
     public Optional<GuiaRemision> read(Integer id);
     public void update(GuiaRemision guiaRemision);
-    public void delete(Integer id);
+    public boolean delete(Integer id);
     public Optional<List<GuiaRemision>> readByNumero(String numero);
     public Optional<List<GuiaRemision>> getAll();
 }

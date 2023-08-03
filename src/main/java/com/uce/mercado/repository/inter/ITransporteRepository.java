@@ -12,4 +12,7 @@ public interface ITransporteRepository {
     public void update(Transporte transporte);
     public void delete(Integer id);
     public Optional<List<Transporte>> readByPlaca(String placa);
+    public Optional<Transporte> readByCedula(String cedula);
+    public Optional<List<Transporte>> readAll();
+
 }

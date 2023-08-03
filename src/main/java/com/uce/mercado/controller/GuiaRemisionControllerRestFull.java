@@ -25,10 +25,17 @@ public class GuiaRemisionControllerRestFull {
     private IGuiaRemisionService guiaRemisionService;
     @Autowired
     private IProductoGuiaService productoGuiaService;
+//    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE},produces={MediaType.APPLICATION_JSON_VALUE})
+//    public ResponseEntity<GuiaRemision> ingresarGuia(@RequestBody GuiaRemision guiaRemision) {
+//
+//        GuiaRemision savedGuiaRemision = this.guiaRemisionService.create(guiaRemision);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(savedGuiaRemision);
+//    }
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE},produces={MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<GuiaRemision> ingresarGuia(@RequestBody GuiaRemision guiaRemision) {
+        System.out.println(guiaRemision.getGuiaFecha());
 
-        GuiaRemision savedGuiaRemision = this.guiaRemisionService.create(guiaRemision);
+        GuiaRemision savedGuiaRemision = this.guiaRemisionService.create(guiaRemision.getGuiaFecha(),guiaRemision.getDestinatario().getCedula(),guiaRemision.getTransporte().getTransportista().getCedula());
         return ResponseEntity.status(HttpStatus.CREATED).body(savedGuiaRemision);
     }
 

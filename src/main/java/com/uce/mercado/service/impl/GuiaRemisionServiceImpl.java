@@ -1,8 +1,12 @@
 package com.uce.mercado.service.impl;
 
+import com.uce.mercado.repository.inter.IDestinatarioRepository;
 import com.uce.mercado.repository.inter.IGuiaRemisionRepository;
+import com.uce.mercado.repository.inter.ITransporteRepository;
+import com.uce.mercado.repository.model.Destinatario;
 import com.uce.mercado.repository.model.GuiaRemision;
 import com.uce.mercado.repository.model.ProductoGuia;
+import com.uce.mercado.repository.model.Transporte;
 import com.uce.mercado.service.inter.IGuiaRemisionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +17,10 @@ import java.util.Optional;
 public class GuiaRemisionServiceImpl implements IGuiaRemisionService {
     @Autowired
     private IGuiaRemisionRepository guiaRemisionRepository;
+    @Autowired
+    private ITransporteRepository transporteRepository;
+    @Autowired
+    private IDestinatarioRepository destinatarioRepository;
     @Override
     public GuiaRemision create(GuiaRemision guiaRemision) {
         return this.guiaRemisionRepository.create(guiaRemision);
@@ -30,13 +38,7 @@ public class GuiaRemisionServiceImpl implements IGuiaRemisionService {
 
     @Override
     public boolean delete(Integer id) {
-        try{
-
-            this.guiaRemisionRepository.delete(id);
-            return true;        }
-        catch (Exception e){
-            return false;
-        }
+        return this.guiaRemisionRepository.delete(id);
 
     }
 
@@ -48,5 +50,18 @@ public class GuiaRemisionServiceImpl implements IGuiaRemisionService {
     @Override
     public Optional<List<GuiaRemision>> getAll() {
         return this.guiaRemisionRepository.getAll();
+    }
+
+    @Override
+    public GuiaRemision create(String fecha, String cedulaDestinatario, String cedulaTransporte) {
+        GuiaRemision guiaRemision = new GuiaRemision();
+        Optional<List<Destinatario>> destinatario=this.destinatarioRepository.readByCedula(cedulaDestinatario);
+        Optional<Transporte> transporte=this.transporteRepository.readByCedula(cedulaTransporte);
+        guiaRemision.setGuiaFecha(fecha);
+        guiaRemision.setDestinatario(destinatario.get().get(0));
+        guiaRemision.setTransporte(transporte.get());
+        this.guiaRemisionRepository.create(guiaRemision);
+
+        return guiaRemision;
     }
 }
